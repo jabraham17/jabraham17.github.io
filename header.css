@@ -2,17 +2,21 @@
   background-color: powderblue;
 }
 .header_icon {
-  width: 10%;
+  width: 12vw;
   vertical-align: middle;
   padding: 5px;
 }
 .header_text {
-  padding-left: 20px;
+  padding-left: 2vw;
   vertical-align: middle;
   display: inline;
-  font-size: xx-large;
+  font-size: 6vw;
 }
 
+
+nav {
+  padding-left: 14vw;
+}
 
 /*top level ul*/
 nav ul {
@@ -21,7 +25,7 @@ nav ul {
 }
 /* all li*/
 nav li {
-  padding: 10px;
+  padding: 2vw;
 }
 /*top level li*/
 nav ul li {
@@ -50,7 +54,7 @@ nav li:hover ul {
 /*attribute for links*/
 nav li a {
   text-decoration: none;
-  font-size: large;
+  font-size: max(2vh,3vw);
   color: blue;
 }
 /*change link color on hover*/
