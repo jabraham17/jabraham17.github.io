@@ -40,11 +40,13 @@ function buildLinks(links, topElm) {
   };
 }
 
-//create a nav bar and the list inside it
-let navBar = document.createElement('nav');
-document.body.appendChild(navBar);
-let topList = document.createElement('ul');
-navBar.appendChild(topList);
+export function buildNavBar(navBar) {
+  //add the list to the nav bar
+  let topList = document.createElement('ul');
+  navBar.appendChild(topList);
 
-//build the links
-buildLinks(links, topList);
+  //build the links
+  buildLinks(links, topList);
+}
+
+export default {buildNavBar};

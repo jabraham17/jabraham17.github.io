@@ -1,0 +1,59 @@
+.page_header {
+  background-color: powderblue;
+}
+.header_icon {
+  width: 10%;
+  vertical-align: middle;
+  padding: 5px;
+}
+.header_text {
+  padding-left: 20px;
+  vertical-align: middle;
+  display: inline;
+  font-size: xx-large;
+}
+
+
+/*top level ul*/
+nav ul {
+  padding: 0;
+  margin: 0;
+}
+/* all li*/
+nav li {
+  padding: 10px;
+}
+/*top level li*/
+nav ul li {
+  display: inline;
+  position: relative;
+}
+
+/*sub ul for drop downs*/
+nav ul ul {
+  position: absolute;
+  left: 0;
+  display: none;
+  background-color: powderblue;
+}
+/*sub li for drop down*/
+nav ul ul li {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*show the sub list on hover*/
+nav li:hover ul {
+  display: block;
+}
+
+/*attribute for links*/
+nav li a {
+  text-decoration: none;
+  font-size: large;
+  color: blue;
+}
+/*change link color on hover*/
+nav li a:hover {
+  color: white;
+}
