@@ -1,26 +1,44 @@
 @import '/resources/global.css';
 
+/*main header, set colors*/
 .page_header {
   background-color: var(--english-lavender);
-  padding-bottom: 2vh;
   border-radius: 25px;
-}
-.header_icon {
-  width: 12vw;
-  vertical-align: middle;
-  padding: 5px;
-}
-.header_text {
-  padding-left: 2vw;
-  vertical-align: middle;
-  display: inline;
-  font-size: 6vw;
-  color: var(--dark-text);
+  width: 100%;
 }
 
-/*move nav bar over*/
+/*make full width, center content*/
+.header_content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/*size the icon*/
+.header_icon {
+  width: max(6%, 6vh);
+  display: inline-block;
+  padding: 1%;
+}
+
+/*title and nav bar, center*/
+.header_right_bar {
+  display: inline-block;
+  width: 100%;
+}
+
+/*size the title, move it down*/
+.header_text {
+  font-size: max(220%, 3vh);
+  color: var(--dark-text);
+  position: relative;
+  top: 1vh;
+}
+
+/*move nav bar up*/
 nav {
-  padding-left: 14vw;
+  position: relative; 
+  top: -1vh;
 }
 
 /*top level ul*/
@@ -30,12 +48,20 @@ nav ul {
 }
 /* all li*/
 nav li {
-  padding: 2vw;
+  padding: 0.5%;
 }
 /*top level li*/
 nav ul li {
   display: inline;
   position: relative;
+}
+
+
+/*style for a vertical line
+only apply to top level elements
+do not apply to first element*/
+nav > ul > li:not(:first-child) {
+  border-left: 2px solid var(--independence);
 }
 
 /*sub ul for drop downs*/
@@ -48,18 +74,21 @@ nav ul ul {
 /*sub li for drop down*/
 nav ul ul li {
   display: block;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10%;
+  padding-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 /*show the sub list on hover*/
 nav li:hover ul {
   display: block;
+  padding-right: 10%;
 }
 
 /*attribute for links*/
 nav li a {
   text-decoration: none;
-  font-size: max(2vh,3vw);
+  font-size: 130%;
   color: var(--link-text);
 }
 /*change link color on hover*/
