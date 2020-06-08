@@ -1,4 +1,4 @@
-import {buildNavBar} from "/nav.js";
+import {buildNavBar} from "/resources/header/nav.js";
 
 
 export function buildHeader(headerText) {
@@ -6,7 +6,7 @@ export function buildHeader(headerText) {
   header.className = "page_header";
 
   let icon = document.createElement("img");
-  icon.src = "/favicon.png";
+  icon.src = "/resources/icons/favicon.png";
   icon.className = "header_icon"
 
   let text = document.createElement("h1");
