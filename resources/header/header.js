@@ -1,7 +1,7 @@
 import {buildNavBar} from "/resources/header/nav.js";
 
 
-export function buildHeader(headerText) {
+export function buildHeader(headerText = document.title) {
   let header = document.createElement("header");
   header.className = "page_header";
 

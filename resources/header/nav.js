@@ -4,9 +4,9 @@ let links = [
   {'name': 'Home', 'link': '/'},
   {'name': 'About', 'link': '/about'},
   {'name': 'Apps', 'link': '/apps', 'sub': [
-    {'name': 'Sonorous', 'link': '/about/sonorous'},
-    {'name': 'Tasker', 'link': '/about/tasker'},
-    {'name': 'Lambda Calculus', 'link': '/about/lambda_calculus'}
+    {'name': 'Sonorous', 'link': '/apps/sonorous'},
+    {'name': 'Tasker', 'link': '/apps/tasker'},
+    {'name': 'Lambda Calculus', 'link': '/apps/lambda_calculus'}
   ]},
   {'name': 'Contact', 'link': '/contact'}
 ];

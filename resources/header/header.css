@@ -1,5 +1,6 @@
 .page_header {
   background-color: powderblue;
+  padding-bottom: 2vh;
 }
 .header_icon {
   width: 12vw;
@@ -13,7 +14,7 @@
   font-size: 6vw;
 }
 
-
+/*move nav bar over*/
 nav {
   padding-left: 14vw;
 }
