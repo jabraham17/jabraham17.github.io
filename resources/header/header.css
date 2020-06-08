@@ -4,6 +4,7 @@
 .page_header {
   background-color: var(--english-lavender);
   border-radius: 25px;
+  border: 2px solid var(--independence);
   width: 100%;
 }
 
@@ -56,7 +57,6 @@ nav ul li {
   position: relative;
 }
 
-
 /*style for a vertical line
 only apply to top level elements
 do not apply to first element*/
@@ -64,25 +64,35 @@ nav > ul > li:not(:first-child) {
   border-left: 2px solid var(--independence);
 }
 
+/*style for a horizontal line
+only apply to sub level elements
+do not apply to first element*/
+nav ul ul li:not(:first-child) {
+  border-top: 1px solid var(--independence);
+}
+
 /*sub ul for drop downs*/
 nav ul ul {
   position: absolute;
-  left: 0;
   display: none;
+  left: -50%;
   background-color: var(--english-lavender);
+  border-bottom: 1px solid var(--independence);
+  border-left: 1px solid var(--independence);
+  border-right: 1px solid var(--independence);
+  width: 400%;
 }
 /*sub li for drop down*/
 nav ul ul li {
   display: block;
-  padding-top: 10%;
-  padding-bottom: 5%;
+  padding-top: 2%;
+  padding-bottom: 0%;
   padding-left: 5%;
   padding-right: 5%;
 }
 /*show the sub list on hover*/
 nav li:hover ul {
   display: block;
-  padding-right: 10%;
 }
 
 /*attribute for links*/
@@ -90,6 +100,8 @@ nav li a {
   text-decoration: none;
   font-size: 130%;
   color: var(--link-text);
+  width: 100%;
+  white-space: nowrap;
 }
 /*change link color on hover*/
 nav li a:hover {
