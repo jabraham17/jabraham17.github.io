@@ -1,0 +1,12 @@
+:root {
+  --dark-text: hsl(281, 27%, 20%);
+  --light-text: hsl(281, 40%, 24%);
+  --link-text: hsl(255, 31%, 50%);
+
+  /*theme colors*/
+  --independence: hsla(253, 18%, 39%, 1);
+  --old-lavender: hsla(275, 14%, 47%, 1);
+  --english-lavender: hsla(341, 23%, 65%, 1);
+  --silver-pink: hsla(18, 15%, 80%, 1);
+  --light-gray: hsla(22, 5%, 84%, 1);
+}

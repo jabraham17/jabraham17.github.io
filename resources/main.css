@@ -1,0 +1,7 @@
+@import '/resources/global.css';
+body {
+  background-color: var(--silver-pink);
+}
+p {
+  color: var(--light-text);
+}

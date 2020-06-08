@@ -1,6 +1,9 @@
+@import '/resources/global.css';
+
 .page_header {
-  background-color: powderblue;
+  background-color: var(--english-lavender);
   padding-bottom: 2vh;
+  border-radius: 25px;
 }
 .header_icon {
   width: 12vw;
@@ -12,6 +15,7 @@
   vertical-align: middle;
   display: inline;
   font-size: 6vw;
+  color: var(--dark-text);
 }
 
 /*move nav bar over*/
@@ -39,7 +43,7 @@ nav ul ul {
   position: absolute;
   left: 0;
   display: none;
-  background-color: powderblue;
+  background-color: var(--english-lavender);
 }
 /*sub li for drop down*/
 nav ul ul li {
@@ -56,9 +60,9 @@ nav li:hover ul {
 nav li a {
   text-decoration: none;
   font-size: max(2vh,3vw);
-  color: blue;
+  color: var(--link-text);
 }
 /*change link color on hover*/
 nav li a:hover {
-  color: white;
+  color: var(--dark-text);
 }
