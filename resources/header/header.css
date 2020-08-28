@@ -6,6 +6,7 @@
   border-radius: 25px;
   border: 2px solid var(--independence);
   width: 100%;
+  margin-bottom: 1%;
 }
 
 /*make full width, center content*/
