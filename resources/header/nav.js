@@ -4,14 +4,13 @@ let links = [
   {'name': 'Home', 'link': '/'},
   {'name': 'About', 'link': '/about'},
   {'name': 'Apps', 'link': '/apps', 'sub': [
-    {'name': 'Lambda Calculus', 'link': '/apps/lambda_calculus'},
-    {'name': 'Grammar Tool', 'link': '/apps/lambda_calculus'},
-    {'name': 'Sonorous', 'link': '/apps/sonorous'},
-    {'name': 'Tasker', 'link': '/apps/tasker'},
-    {'name': 'Sunhacks 2019', 'link': '/apps/sunhacks2019'},
-    {'name': 'OpenClass', 'link': '/apps/openclass'},
-    {'name': 'LayoutToCode', 'link': '/apps/layouttocode'},
-    {'name': 'Mixer', 'link': '/apps/mixer'}
+    {'name': 'Mobile Apps', 'link': 'https://mjaapps.weebly.com/'},
+    //{'name': 'Lambda Calculus', 'link': '/apps/lambda_calculus'},
+    {'name': 'Grammar Tool', 'link': '/apps/grammartool'},
+    //{'name': 'Sunhacks 2019', 'link': '/apps/sunhacks2019'},
+    //{'name': 'OpenClass', 'link': '/apps/openclass'},
+    //{'name': 'LayoutToCode', 'link': '/apps/layouttocode'},
+    //{'name': 'Mixer', 'link': '/apps/mixer'}
   ]},
   {'name': 'Contact', 'link': '/contact'}
 ];

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Jacob Abraham">
+    <meta name="description" content="A collection of the best of my personal projects">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lambda Calculus</title>
+
+    <link rel="icon" href="/resources/icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/resources/main.css">
+    <link rel="stylesheet" href="/resources/header/header.css">
+    <link rel="stylesheet" href="./grammartool.css">
+
+    <script type="module" defer>
+      import {buildHeader} from "/resources/header/header.js"
+      buildHeader();
+    </script>
+  </head>
+  <body>
+    <main>
+     <p>Based on ideas and projects from a Programming Language Foundations course, I built a command line tool to generate information about a context free grammar.</p>
+     <p>
+       The tool has the following capabilities
+     </p>
+     <ul>
+       <li>Print Terminal and Non-Terminal elements</li>
+       <li>Remove useless rules</li>
+       <li>Calculate the First sets</li>
+       <li>Calculate the Follow sets</li>
+       <li>Determine if a predictive parser exists</li>
+       <li>Build a basic class structure for a parser</li>
+     </ul>
+     <p>
+       Unfortunately, because this code is so heavily based on projects from a class, I cannot release the source code to it. However, I have compiled it to WebAssembly so that the functionality is usable.
+     </p>
+     <div class="app">
+       <div class="input-group" id="grammar">
+         <div class="input-control">
+          <div class="left">
+            <button class="control-button" id="file">File</button>
+            <button class="control-button" id="paste">Paste</button>
+            <button class="control-button" id="copy">Copy</button>
+            <button class="control-button" id="clear">Clear</button>
+          </div>
+          <div class="right">
+            <button class="control-button" id="submit">Submit</button>
+          </div>
+         </div>
+         <textarea class="input-area" rows="20"></textarea>
+       </div>
+       
+     </div>
+    </main>
+    <script src="./grammar_tool_ui.js"></script>
+    <script src="./grammar_tool.js"></script>
+    <script>
+      let Module = null;
+      createModule()
+        .then(mod => Module = mod)
+        .catch(err => console.error(err));
+  
+      /*.then(mod => {
+        console.log("Ready");
+        console.log("Compile Time: " + mod.compileTime);
+        let tool = new mod.GrammarTool(document.getElementById("input-grammar").textContent)
+        console.log(document.getElementById("input-grammar").textContent)
+        console.log("Terminals")
+        let retVector = tool.getTerminals()
+        for (var i = 0; i < retVector.size(); i++) {
+          console.log("Vector Value: ", retVector.get(i));
+        }
+        console.log("Non-Terminals")
+        retVector = tool.getNonTerminals()
+        for (var i = 0; i < retVector.size(); i++) {
+          console.log("Vector Value: ", retVector.get(i));
+        }
+        console.log("Useful Rules")
+        retVector = tool.getUsefulRules()
+        for (var i = 0; i < retVector.size(); i++) {
+          console.log("Vector Value: ", retVector.get(i));
+        }
+      }).catch(err => console.log(err));*/
+    </script>
+  </body>
+</html>

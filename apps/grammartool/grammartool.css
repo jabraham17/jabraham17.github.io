@@ -1,0 +1,36 @@
+@import '/resources/global.css';
+
+.app {
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: var(--english-lavender);
+}
+
+.input-control {
+  display: flex;
+  padding: 5px;
+  background-color: var(--english-lavender);
+}
+
+.input-control .left {
+  margin-right: auto;
+}
+.input-control .right {
+  margin-left: auto;
+}
+.control-button {
+  margin: 5px;
+}
+.input-area {
+  flex: 1;
+  resize: none;
+  font-size: large; 
+  background-color: var(--light-gray);
+}
