@@ -51,34 +51,45 @@ Module["printErr"] = (msg) => {
 if (typeof locateWASMFile !== "undefined") {
   Module["locateFile"] = locateWASMFile;
 }
+
+function compileNoStream(fetchPromise, info, receiveInstance) {
+  let compileStart;
+  fetchPromise
+    .then((resp) => resp.arrayBuffer())
+    .then((...args) => {
+      compileStart = performance.now();
+      return Promise.resolve(...args);
+    })
+    .then((bytes) => WebAssembly.instantiate(bytes, info))
+    .then((obj) => {
+      Module["compileTime"] = performance.now() - compileStart;
+      receiveInstance(obj.instance, obj.module);
+    })
+    .catch((reas) => {
+      Module["printErr"]("Failed to compile: " + reas)
+    });
+}
+
 Module["instantiateWasm"] = (info, receiveInstance) => {
   if (inBrowser) {
     const fetchPromise = fetch(wasmBinaryFile, { credentials: "same-origin" });
 
-    let compileStart = performance.now();
-    WebAssembly.instantiateStreaming(fetchPromise, info)
-      .then((obj) => {
-        Module["compileTime"] = performance.now() - compileStart;
-        receiveInstance(obj.instance, obj.module);
-      })
-      .catch((reas) => {
-        Module["printWarn"]("Failed to compile streaming: " + reas);
-        Module["printWarn"]("Falling back to compile");
-        fetchPromise
-          .then((resp) => resp.arrayBuffer())
-          .then((...args) => {
-            compileStart = performance.now();
-            return Promise.resolve(...args);
-          })
-          .then((bytes) => WebAssembly.instantiate(bytes, info))
-          .then((obj) => {
-            Module["compileTime"] = performance.now() - compileStart;
-            receiveInstance(obj.instance, obj.module);
-          })
-          .catch((reas) => {
-            Module["printErr"]("Failed to compile: " + reas)
-          });
-      });
+    if(typeof WebAssembly.instantiateStreaming === "undefined") {
+      compileNoStream(fetchPromise, info, receiveInstance);
+    }
+    else {
+      let compileStart = performance.now();
+      WebAssembly.instantiateStreaming(fetchPromise, info)
+        .then((obj) => {
+          Module["compileTime"] = performance.now() - compileStart;
+          receiveInstance(obj.instance, obj.module);
+        })
+        .catch((reas) => {
+          Module["printWarn"]("Failed to compile streaming: " + reas);
+          Module["printWarn"]("Falling back to compile");
+          compileNoStream(fetchPromise, info, receiveInstance);
+        });
+    }
   } else {
     let compileStart = performance.now();
     const data = new Uint8Array(readbuffer(wasmBinaryFile));
