@@ -1,11 +1,41 @@
 @import '/resources/global.css';
 
-.app {
-  width: 100%;
+
+.working-indicator {
+  display: none;
+  border: 8px solid var(--light-gray);
+  border-radius: 50%;
+  border-top: 8px solid var(--independence);
+  border-bottom: 8px solid var(--independence);
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  align-self: center;
 }
 
-.input-group {
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.app {
   display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.app-header {
+  flex: 1;
+}
+
+.spacer {
+  height: 30px;
+  width: 30px;
+}
+
+.element-group {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   border: 2px solid black;
   border-radius: 8px;
@@ -13,16 +43,16 @@
   background-color: var(--english-lavender);
 }
 
-.input-control {
+.control-group {
   display: flex;
   padding: 5px;
   background-color: var(--english-lavender);
 }
 
-.input-control .left {
+.icontrol-group .left {
   margin-right: auto;
 }
-.input-control .right {
+.control-group .right {
   margin-left: auto;
 }
 .control-button {
@@ -33,4 +63,20 @@
   resize: none;
   font-size: large; 
   background-color: var(--light-gray);
+}
+
+
+#output-table #error {
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+}
+
+#output-table .outputRow {
+  padding: 8px;
+  margin: 20px;
+}
+#output-table .outputRow td {
+  border: 1px solid black;
+  padding: 5px;
 }

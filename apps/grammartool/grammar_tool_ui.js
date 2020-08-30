@@ -1,5 +1,5 @@
 
-const grammarInputGroup = document.querySelector("#grammar.input-group");
+const grammarInputGroup = document.querySelector("#grammar");
 
 const grammarInput = grammarInputGroup.querySelector(".input-area");
 
@@ -42,24 +42,111 @@ clearButton.addEventListener("click", () => {
 const fileButton = grammarInputGroup.querySelector("#file.control-button")
 fileButton.addEventListener("change", (event) => { 
   let fileList = event.target.files;
-  if(fileList.length > 1) {
+  if(fileList.length >= 1) {
     let file = fileList[0];
     let reader = new FileReader();
-    reader.onload = (_ => {
+    reader.onload = function() {
       let contents = this.result;
-      console.log(contents);
-      console.log(reader.result)
-    });
+      grammarInput.value = contents;
+    };
     reader.readAsText(file);
   }
 }, false);
 
 const submitButton = grammarInputGroup.querySelector("#submit.control-button")
-submitButton.addEventListener("click", () => { 
-  let tool = new Module.GrammarTool(grammarInput.value);
-  console.log("Terminals")
-        let retVector = tool.getTerminals()
-        for (var i = 0; i < retVector.size(); i++) {
-          console.log("Vector Value: ", retVector.get(i));
-        }
-}, false);
+submitButton.addEventListener("click", calculateGrammar, false);
+
+
+
+
+const outputTable = {
+  "table": document.querySelector("#output #output-table"),
+  "error": document.querySelector("#output-table #error"),
+  "terminal": document.querySelector("#output-table #symbols #terminal"),
+  "nonterminal": document.querySelector("#output-table #symbols #nonterminal"),
+  "useful": document.querySelector("#output-table #useful #usefulRules"),
+  "first": document.querySelector("#output-table #first"),
+  "follow": document.querySelector("#output-table #follow"),
+  "predicative": document.querySelector("#output-table #predicative"),
+  "parser": document.querySelector("#output-table #parser")
+}
+
+const loader = document.querySelector(".app .working-indicator");
+
+function clearOutput() {
+  loader.style.display = "block";
+  outputTable["table"].style.display = "none";
+
+}
+function setOutput(results) {
+
+  if(results["error"]) {
+    outputTable["error"].style.backgroundColor = "red";
+    outputTable["error"].innerHTML = results["error"];
+    outputTable["error"].style.display = "block";
+  }
+  else {
+    outputTable["error"].style.backgroundColor = "";
+    outputTable["error"].innerHTML = "";
+    outputTable["error"].style.display = "none";
+  }
+
+  outputTable["terminal"].innerHTML = results["terminal"];
+  outputTable["nonterminal"].innerHTML = results["nonterminal"];
+  outputTable["useful"].innerHTML = results["useful"];
+
+  outputTable["table"].style.display = "block";
+  loader.style.display = "none";
+}
+
+function calculateGrammar() {
+  if(Module == null) {
+    setTimeout(() => {
+      calculateGrammar();
+    }, 2000);
+  }
+  else {
+    clearOutput();
+
+    let results = {
+      "error": null,
+      "terminal": "",
+      "nonterminal": "",
+      "useful": "",
+      "first": "",
+      "follow": "",
+      "predicative": "",
+      "parser": ""
+    }
+
+    let tool = new Module.GrammarTool(grammarInput.value);
+
+    //valid
+    if(tool.hasSyntaxError()) results["error"] = tool.getSyntaxError();
+    else {
+      //symbols
+      let terminal = tool.getTerminals();
+      for (let i = 0; i < terminal.size(); i++) {
+        results["terminal"] += `${terminal.get(i)}<br>`
+      }
+      terminal.delete();
+      let nonterminal = tool.getNonTerminals();
+      for (let i = 0; i < nonterminal.size(); i++) {
+        results["nonterminal"] += `${nonterminal.get(i)}<br>`
+      }
+      nonterminal.delete();
+
+      //useful rules
+      let usefulRules = tool.getUsefulRules();
+      for (let i = 0; i < usefulRules.size(); i++) {
+        results["useful"] += `${usefulRules.get(i)}<br>`
+      }
+      usefulRules.delete();
+
+    }
+
+    tool.delete();
+
+    setOutput(results);
+  }
+}
