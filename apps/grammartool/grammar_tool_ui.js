@@ -12,10 +12,6 @@ rhs_list -> rhs | rhs PIPE rhs_list;
 rhs -> id_list | EPSILON;`;
 
 
-
-const fileButton = grammarInputGroup.querySelector("#file.control-button")
-fileButton.addEventListener("click", () => { 
-}, false);
 const pasteButton = grammarInputGroup.querySelector("#paste.control-button")
 pasteButton.addEventListener("click", () => {
   if(typeof navigator.clipboard === "undefined") {
@@ -23,10 +19,10 @@ pasteButton.addEventListener("click", () => {
     document.execCommand("paste");
   }
   else {
-    console.log("working")
     navigator.clipboard.readText().then(text => grammarInput.value = text);
   }
 }, false);
+
 const copyButton = grammarInputGroup.querySelector("#copy.control-button")
 copyButton.addEventListener("click", () => { 
   if(typeof navigator.clipboard === "undefined") {
@@ -34,14 +30,30 @@ copyButton.addEventListener("click", () => {
     document.execCommand("copy");
   }
   else {
-    console.log("working")
     navigator.clipboard.writeText(grammarInput.value);
   }
 }, false);
+
 const clearButton = grammarInputGroup.querySelector("#clear.control-button")
 clearButton.addEventListener("click", () => { 
   grammarInput.value = "";
 }, false);
+
+const fileButton = grammarInputGroup.querySelector("#file.control-button")
+fileButton.addEventListener("change", (event) => { 
+  let fileList = event.target.files;
+  if(fileList.length > 1) {
+    let file = fileList[0];
+    let reader = new FileReader();
+    reader.onload = (_ => {
+      let contents = this.result;
+      console.log(contents);
+      console.log(reader.result)
+    });
+    reader.readAsText(file);
+  }
+}, false);
+
 const submitButton = grammarInputGroup.querySelector("#submit.control-button")
 submitButton.addEventListener("click", () => { 
   let tool = new Module.GrammarTool(grammarInput.value);
