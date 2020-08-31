@@ -65,8 +65,8 @@ const outputTable = {
   "terminal": document.querySelector("#output-table #symbols #terminal"),
   "nonterminal": document.querySelector("#output-table #symbols #nonterminal"),
   "useful": document.querySelector("#output-table #useful #usefulRules"),
-  "first": document.querySelector("#output-table #first"),
-  "follow": document.querySelector("#output-table #follow"),
+  "first": document.querySelector("#output-table #first td"),
+  "follow": document.querySelector("#output-table #follow td"),
   "predicative": document.querySelector("#output-table #predicative"),
   "parser": document.querySelector("#output-table #parser")
 }
@@ -94,6 +94,8 @@ function setOutput(results) {
   outputTable["terminal"].innerHTML = results["terminal"];
   outputTable["nonterminal"].innerHTML = results["nonterminal"];
   outputTable["useful"].innerHTML = results["useful"];
+  outputTable["first"].innerHTML = results["first"];
+  outputTable["follow"].innerHTML = results["follow"];
 
   outputTable["table"].style.display = "block";
   loader.style.display = "none";
@@ -142,6 +144,19 @@ function calculateGrammar() {
         results["useful"] += `${usefulRules.get(i)}<br>`
       }
       usefulRules.delete();
+
+      //first and follow
+      let first = tool.getFirstSets();
+      for (let i = 0; i < first.size(); i++) {
+        results["first"] += `${first.get(i)}<br>`
+      }
+      first.delete();
+
+      let follow = tool.getFollowSets();
+      for (let i = 0; i < follow.size(); i++) {
+        results["follow"] += `${follow.get(i)}<br>`
+      }
+      follow.delete();
 
     }
 
