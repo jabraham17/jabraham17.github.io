@@ -35,7 +35,7 @@
 }
 
 .element-group {
-  width: 70%;
+  width: 90%;
   display: flex;
   align-items: center;
   flex: 1;
@@ -48,6 +48,7 @@
 
 .control-group {
   display: flex;
+  width: 97%;
   padding: 5px;
   background-color: var(--english-lavender);
 }
@@ -62,6 +63,7 @@
   margin: 5px;
 }
 .input-area {
+  width: 100%;
   flex: 1;
   resize: none;
   font-size: large; 
@@ -70,7 +72,7 @@
 
 
 #output {
-  width: 50%;
+  width: 80%;
 }
 
 #output-table #error {

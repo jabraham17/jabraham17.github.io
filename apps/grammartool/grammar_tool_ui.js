@@ -101,7 +101,7 @@ function setOutput(results) {
 
   //apply results to output
   for(let key in outputTable["elements"]) {
-    if(key !== "parer") outputTable["elements"][key].innerHTML = results[key];
+    if(key !== "parser") outputTable["elements"][key].innerHTML = results[key];
     else if(results[key]) outputTable["elements"][key].appendChild(results[key])
   }
 
