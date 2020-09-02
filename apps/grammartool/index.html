@@ -53,43 +53,45 @@
             <button class="control-button" id="submit">Submit</button>
           </div>
         </div>
-        <textarea class="input-area" rows="15"></textarea>
+        <textarea class="input-area" rows="15" cols="80"></textarea>
       </div>
       <div class="spacer"></div>
-      <div class="element-group" id="output">
+      <div class="element-group" id="output" style="background-color: var(--light-gray);">
         <div class="working-indicator"></div>
-        <div id="output-table" style="display: flex;">
+        <div id="output-table">
           <p id="error">
           </p>
-          <table id="symbols" class="outputRow">
-            <th>Terminals</th>
-            <th>Non-Terminals</th>
-            <tr>
-              <td id="terminal"></td>
-              <td id="nonterminal"></td>
-            </tr>
-          </table>
-          <table id="useful" class="outputRow">
-            <th>Useful Rules</th>
-            <tr>
-              <td id="usefulRules"></td>
-            </tr>
-          </table>
-          <table id="first" class="outputRow">
-            <th>First Sets</th>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-          <table id="follow" class="outputRow">
-            <th>Follow Sets</th>
-            <tr>
-              <td></td>
-            </tr>
-          </table>
-          <div id="predicative">
-          </div>
-          <div id="parser">
+          <div id="elements-block">
+            <table id="symbols" class="outputRow">
+              <th>Terminals</th>
+              <th>Non-Terminals</th>
+              <tr>
+                <td id="terminal"></td>
+                <td id="nonterminal"></td>
+              </tr>
+            </table>
+            <table id="useful" class="outputRow">
+              <th>Useful Rules</th>
+              <tr>
+                <td id="usefulRules"></td>
+              </tr>
+            </table>
+            <table id="first" class="outputRow">
+              <th>First Sets</th>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+            <table id="follow" class="outputRow">
+              <th>Follow Sets</th>
+              <tr>
+                <td></td>
+              </tr>
+            </table>
+            <p id="predict">
+            </p>
+            <div id="parser">
+            </div>
           </div>
         </div>
       </div>

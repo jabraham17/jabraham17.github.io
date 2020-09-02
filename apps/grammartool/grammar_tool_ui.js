@@ -62,13 +62,16 @@ submitButton.addEventListener("click", calculateGrammar, false);
 const outputTable = {
   "table": document.querySelector("#output #output-table"),
   "error": document.querySelector("#output-table #error"),
-  "terminal": document.querySelector("#output-table #symbols #terminal"),
-  "nonterminal": document.querySelector("#output-table #symbols #nonterminal"),
-  "useful": document.querySelector("#output-table #useful #usefulRules"),
-  "first": document.querySelector("#output-table #first td"),
-  "follow": document.querySelector("#output-table #follow td"),
-  "predicative": document.querySelector("#output-table #predicative"),
-  "parser": document.querySelector("#output-table #parser")
+  "elements-block": document.querySelector("#output-table #elements-block"),
+  "elements": {
+    "terminal": document.querySelector("#output-table #symbols #terminal"),
+    "nonterminal": document.querySelector("#output-table #symbols #nonterminal"),
+    "useful": document.querySelector("#output-table #useful #usefulRules"),
+    "first": document.querySelector("#output-table #first td"),
+    "follow": document.querySelector("#output-table #follow td"),
+    "predict": document.querySelector("#output-table #predict"),
+    "parser": document.querySelector("#output-table #parser")
+  }
 }
 
 const loader = document.querySelector(".app .working-indicator");
@@ -78,24 +81,29 @@ function clearOutput() {
   outputTable["table"].style.display = "none";
 
 }
+
 function setOutput(results) {
 
   if(results["error"]) {
     outputTable["error"].style.backgroundColor = "red";
     outputTable["error"].innerHTML = results["error"];
     outputTable["error"].style.display = "block";
+
+    outputTable["elements-block"].style.display = "none";
   }
   else {
     outputTable["error"].style.backgroundColor = "";
     outputTable["error"].innerHTML = "";
     outputTable["error"].style.display = "none";
+
+    outputTable["elements-block"].style.display = "block";
   }
 
-  outputTable["terminal"].innerHTML = results["terminal"];
-  outputTable["nonterminal"].innerHTML = results["nonterminal"];
-  outputTable["useful"].innerHTML = results["useful"];
-  outputTable["first"].innerHTML = results["first"];
-  outputTable["follow"].innerHTML = results["follow"];
+  //apply results to output
+  for(let key in outputTable["elements"]) {
+    if(key !== "parser") outputTable["elements"][key].innerHTML = results[key];
+    else outputTable["elements"][key].appendChild(results[key])
+  }
 
   outputTable["table"].style.display = "block";
   loader.style.display = "none";
@@ -117,7 +125,7 @@ function calculateGrammar() {
       "useful": "",
       "first": "",
       "follow": "",
-      "predicative": "",
+      "predict": "",
       "parser": ""
     }
 
@@ -158,10 +166,34 @@ function calculateGrammar() {
       }
       follow.delete();
 
+      let hasPredict = tool.hasPredictiveParser();
+      if(hasPredict) results["predict"] = "A predictive parser exists for this grammar";
+      else results["predict"] = "A predictive parser does not exist for this grammar";
+
+      let parserText = tool.buildSimpleParser();
+      let info = document.createElement("p");
+      let download = saveData(parserText, 'parser.h');
+      download.text = "Download simple parser (experimental)";
+      info.appendChild(download)
+      results["parser"] = info;
+
     }
 
     tool.delete();
 
     setOutput(results);
   }
+}
+
+
+function saveData(content, filename) {
+
+  //create link for the file
+  let link = document.createElement("a");
+  link.style = "color: blue;";
+  link.text = `${filename}`;
+  link.download = `${filename}`;
+  link.href = URL.createObjectURL(new Blob([content], { type: "text/plain" }));
+
+  return link;
 }
