@@ -101,8 +101,8 @@ function setOutput(results) {
 
   //apply results to output
   for(let key in outputTable["elements"]) {
-    if(key !== "parser") outputTable["elements"][key].innerHTML = results[key];
-    else outputTable["elements"][key].appendChild(results[key])
+    if(key !== "parer") outputTable["elements"][key].innerHTML = results[key];
+    else if(results[key]) outputTable["elements"][key].appendChild(results[key])
   }
 
   outputTable["table"].style.display = "block";
@@ -126,7 +126,7 @@ function calculateGrammar() {
       "first": "",
       "follow": "",
       "predict": "",
-      "parser": ""
+      "parser": null
     }
 
     let tool = new Module.GrammarTool(grammarInput.value);
