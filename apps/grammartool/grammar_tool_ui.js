@@ -80,6 +80,10 @@ function clearOutput() {
   loader.style.display = "block";
   outputTable["table"].style.display = "none";
 
+  for(let key in outputTable["elements"]) {
+    outputTable["elements"][key].innerHTML = "";
+  }
+
 }
 
 function setOutput(results) {
