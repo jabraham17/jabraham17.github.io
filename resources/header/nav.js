@@ -7,6 +7,7 @@ let links = [
     {'name': 'Mobile Apps', 'link': 'https://mjaapps.weebly.com/'},
     //{'name': 'Lambda Calculus', 'link': '/apps/lambda_calculus'},
     {'name': 'Grammar Tool', 'link': '/apps/grammartool'},
+    {'name': 'WebAssembly Reference', 'link': '/apps/wasmref'},
     //{'name': 'Sunhacks 2019', 'link': '/apps/sunhacks2019'},
     //{'name': 'OpenClass', 'link': '/apps/openclass'},
     //{'name': 'LayoutToCode', 'link': '/apps/layouttocode'},

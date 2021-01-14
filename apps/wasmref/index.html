@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Jacob Abraham">
+  <meta name="description" content="A collection of the best of my personal projects">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WebAssembly Reference</title>
+
+  <link rel="icon" href="/resources/icons/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/resources/main.css">
+  <link rel="stylesheet" href="/resources/header/header.css">
+  <link rel="stylesheet" href="./table.css">
+
+  <script type="module" defer>
+    import { buildHeader } from "/resources/header/header.js"
+    buildHeader();
+  </script>
+</head>
+
+<body>
+  <main>
+    <p>
+      In the course of some of my work, I have frequently needed a one-stop shop reference for WebAssembly instructions.
+      However, I have been unable to find one that meets all my needs.
+    </p>
+    <p>My requirements for the information is that it must display the instruction name, the full hex code, the effect the instruction has on the stack, and whether it takes an immediate. I also wanted something that would be updated live (with little to no maitnenice) and that included some of the top proposals (ie SIMD and Threading).</p>
+    <div id="wasm-ref">
+    </div>
+    <script src="wasmref.js"></script>
+  </main>
+</body>
+
+</html>
