@@ -205,7 +205,11 @@ class InstructionParser {
       y = y.replaceAll("_", "");
       return y;
     }
-    else if (x == "laneidx") return "idx";
+    else if (x.match(/laneidx(?:^[0-9]+)?/i)) {
+      let y = x.replaceAll("laneidx", "idx");
+      y = y.replaceAll("^", " X ");
+      return y;
+    }
     else return x;
   }
 
@@ -423,6 +427,7 @@ class InstructionTable {
 
     this.body = document.createElement("tbody");
     this.table.appendChild(this.body);
+    this.num_inst = 0;
   }
 
   _createRow(items, head = false) {
@@ -478,12 +483,21 @@ class InstructionTable {
 
   addInst(idx, ...elms) {
     elms.forEach((e) => {
-      //get the nth element
-      let currentAtIdx = this.body.querySelector(`:nth-child(${idx})`);
-      //make the new row
+
       let newRow = this._createRow(this._buildInst(e));
-      //insert it
-      this.body.insertBefore(newRow, currentAtIdx);
+
+      //if we need to insert inside of list
+      if(idx < this.num_inst) {
+        //get the nth element
+        let currentAtIdx = this.body.querySelector(`:nth-child(${idx})`);
+        //insert it
+        this.body.insertBefore(newRow, currentAtIdx);
+      }
+      //just add it
+      else {
+        this.body.appendChild(newRow);
+      }
+      this.num_inst++;
     });
   }
 }
