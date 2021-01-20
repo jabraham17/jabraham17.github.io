@@ -25,4 +25,5 @@ td > p {
 /*make scrollable when on small screens*/
 #wasm-ref {
   overflow-x: scroll;
+  overflow: auto;
 }
